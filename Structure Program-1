@@ -1,0 +1,49 @@
+/* Program to read name, roll, marks in computer subjects of N students using structure, asking to user and print the records in ascending order on the basis of their marks */
+// Prepared By: Sagar Bhandari
+#include<stdio.h>
+//Creating structure with data members name, marks and roll
+struct student {
+	char name[20];
+	int marks, roll;
+} s[100];
+int main()
+{
+	struct student t;	//Creating structure type variable t
+	int i, j, N;
+	printf("Enter the number of students:");
+	scanf("%d",&N);			
+	printf("Input Records of Students");
+	printf("\n=============================\n");
+	for(i=0; i<N; i++)	//This section is for entering data of N students
+	{
+		printf("Enter Name of Student-%d: ", i+1);
+		scanf("%s",s[i].name);
+		printf("Enter roll of Student-%d: ", i+1);
+		scanf("%d",&s[i].roll);
+		printf("Enter marks of Student-%d: ", i+1);
+		scanf("%d",&s[i].marks);
+	}
+  	//This section is used to arrange the whole data based on marks
+	for(i=0; i<N; i++)
+    {
+		for(j=i+1; j<N; j++)
+		{
+			if(s[i].marks>s[j].marks)
+			{
+				t=s[i];
+				s[i]=s[j];
+				s[j]=t;
+			}
+		}
+	}
+  	//Printing data after arranging
+	printf("\n\tData after Arranging");
+	printf("\n-----------------------------------\n");
+	printf("Name\tRoll\tMarks\n");
+	printf("--------------------------------------\n");
+	for(i=0; i<N; i++)
+	{
+		printf("\n%s\t%d\t%d\n",s[i].name, s[i].roll, s[i].marks);
+	}
+	return 0;
+}
